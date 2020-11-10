@@ -1,0 +1,31 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:8.0.0'
+	implementation 'com.graphql-java-kickstart:graphiql-spring-boot-starter:8.0.0'
+	testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:8.0.0'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

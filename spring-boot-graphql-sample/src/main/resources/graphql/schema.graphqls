@@ -1,0 +1,17 @@
+type Location {
+    locationId: ID!
+    name: String!
+    path: String!
+}
+
+type Query {
+    getLocation(locationId:ID!): Location
+}
+
+type Mutation {
+    addLocation(locationId:ID!, name: String!, path: String!): Location
+}
+
+type Subscription {
+    pushLocation: Location!
+}

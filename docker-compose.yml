@@ -1,0 +1,29 @@
+---
+version: "2"
+
+services:
+  front:
+    image: nginx:alpine
+    container_name: nginx
+    hostname: "nginx"
+    volumes:
+      - $PWD/apollo-graphql-client-sample/build:/usr/share/nginx/html
+      - $PWD/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - link
+    ports:
+      - "8080:80"
+
+  back:
+    image: amazoncorretto:11
+    container_name: graphql
+    hostname: "graphql"
+    volumes:
+      - $PWD/spring-boot-graphql-sample/:/work
+    command: java -jar work/build/libs/demo-0.0.1-SNAPSHOT.jar
+    networks:
+      - link
+
+networks:
+  link:
+    driver: bridge
